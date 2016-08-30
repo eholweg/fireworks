@@ -1,0 +1,27 @@
+FCST,Stat. ID,yymmdd, hr,w,T, RH,Y,M,D, sp,10, tx, tm, hx,hm,p1,p2,F
+fcst,381201,130803,13,2,90,56,2,2,ssw,06,,90,71,100,55,0,0,n
+fcst,382301,130803,13,1,93,46,2,2,sw,05,,93,72,93,46,0,0,n
+fcst,382603,130803,13,2,91,56,2,2,ssw,05,,91,72,100,56,0,0,n
+fcst,383101,130803,13,1,93,51,2,2,ssw,03,,93,72,100,51,0,0,n
+fcst,383401,130803,13,1,92,56,2,2,s,04,,92,72,100,56,0,0,n
+fcst,383701,130803,13,1,93,49,4,4,ssw,04,,93,72,100,49,0,0,n
+
+FCST	Forecast for NFDRS point
+Stat. ID	See Table Below for all Site Id's for CAE Forecast Points
+yymmdd	year, month, and date (remember the date is always the next day)
+hr	forecast is valid for 1300 local the next day
+w	weather (0 is clear, 1 is scattered clouds, 2 is broken clouds, 3 is overcast, 4 is fog, 5 is drizzle, 6 is rain, 7 is snow/sleet, 8 is showers, and 9 is thunderstorms
+T	Dry bulb temperature at 1300 local tomorrow
+RH	Relative humidity at 1300 local tomorrow
+Y	Lightning activity level from 1300 local today to 0600 local tonight (1 is none, 2 is 1-8 strikes, 3 is 9-15 strikes, 4 is 15-25 strikes, 5 is more than 25 strikes, 6 is dry lightning)
+M	Lightning activity level from 0600 local tonight to 1300 local the next day (see table above for values)
+D	Wind direction (N, NE, E, SE, S, SW, W, NW)
+sp	Wind speed in miles per hour
+10	10 hour fuel moisture value (not forecast by us)
+tx	Maximum temperature from 1300 today to 1300 tomorrow
+tm	Minimum temperature from 1300 today to 1300 tomorrow
+hx	Maximum relative humidity from 1300 today to 1300 tomorrow
+hm	Minimum relative humidity from 1300 today to 1300 tomorrow
+p1	Precipitation duration (1300-0600 period) in whole hours
+p2	Precipitation duration (0600-1300 period) in whole hours
+F	Wet Flag (Y for yes and N for no) Y is used for widespread rain
