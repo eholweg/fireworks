@@ -1,6 +1,8 @@
 import re
 import string
 
+# EJHOLWEG
+
 class Fireworks:
 
     def main(self):
