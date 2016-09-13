@@ -1,20 +1,32 @@
 import re
-import string
+import datetime
+from subprocess import call
 
 # EJHOLWEG
 
 class Fireworks:
 
+    # def makeFWM(fd):
+    #     return "FCST," + fd['id'] + "," + fd['date'] + "," + fd['hr'] + "," + fd['wx'] + "," + fd['temp'] + "," + \
+    #            fd['rh'] + "," + fd['lal1423'] + "," + fd['lal2323'] + "," + fd['wdir'] + "," + fd['wspd'] + "," + \
+    #            fd['tenhr'] + "," + fd['maxtemp'] + "," + fd['mintemp'] + "," + fd['maxrh'] + "," + fd['minrh'] + \
+    #            "," + fd['pd1305'] + "," + fd['pd0513'] + "," + fd['wetflag'] + fd['fcstAdds']
+
+    @property
     def main(self):
         FWMWRK = "./data/FWMWRK"
         FWOMRX = "./data/FWOMRX"
-        FWMMRX = "./data/FWMMRX"
+        FIREWORKS = "./data/FIREWORKS"
+
+        dtg=datetime.datetime.utcnow()
+        zdate=dtg.strftime("%d%H%M")
+
+        FIREWORK="FNUS84 KMRX "+zdate+"\nFWMWRK\n\n"
 
         obPattern = re.compile('\D+\s+\d{6}\s\d{6}.*')
         fcstPattern=re.compile('FCST,.*')
 
         fullObsDict={}
-        #obsDict={}
         fullFcstDict={}
 
         #READ IN THE OBS FILE
@@ -57,7 +69,7 @@ class Fireworks:
         for fcst in fwm:
             matchFcst = re.match(fcstPattern, fcst)
             if matchFcst:
-                print fcst
+                #print fcst
 
                 fcstList = fcst.rstrip().split(',')
 
@@ -78,13 +90,42 @@ class Fireworks:
                            "minrh": fcstList[15],
                            "pd1305": fcstList[16],
                            "pd0513": fcstList[17],
-                           "wetflag": fcstList[18]
+                           "wetflag": fcstList[18],
+                           "fcstLine": fcst.rstrip(),
+                           "fcstAdds": ''
                            }
                 fullFcstDict[fcstList[1]] = fcstDict
 
-        for k in fullFcstDict:
-            print k, fullFcstDict[k]['maxtemp']
+        #for k in fullFcstDict:
+            #print k, fullFcstDict[k]['maxtemp']
+
+        for k in fullObsDict:
+            if fullFcstDict[k]['sta_id'] == k:
+                #check if fcst max temp < obs dbt+2
+                tempThresh = int( fullFcstDict[k]['maxtemp'] ) - int( fullObsDict[k]['dbt'] )
+                #print "FC MAX TEMP--> ",fullFcstDict[k]['maxtemp']
+                #print "OB TEMP--> ", fullObsDict[k]['dbt']
+                if abs(tempThresh) < 3:
+                    fullFcstDict[k]['fcstAdds']+=" [OB TEMP="+fullObsDict[k]['dbt']+"]\n"
+                    fullFcstDict[k]['maxtemp']="["+fullFcstDict[k]['maxtemp']+"]"
+                else:
+                    fullFcstDict[k]['fcstAdds'] += "\n"
+
+
+            fd=fullFcstDict[k]
+            FIREWORK+="FCST," + fd['sta_id'] + "," + fd['date'] + "," + fd['hr'] + "," + fd['wx'] + "," + \
+              fd['temp'] + "," + fd['rh'] + "," + fd['lal1423'] + "," + fd['lal2323'] + "," + \
+              fd['wdir'] + "," + fd['wspd'] + "," + fd['tenhr'] + "," + fd['maxtemp'] + "," + \
+              fd['mintemp'] + "," + fd['maxrh'] + "," + fd['minrh'] + "," + fd['pd1305'] + \
+              "," + fd['pd0513'] + "," + fd['wetflag'] + fd['fcstAdds']
+
+            output=open(FIREWORKS, 'w')
+            output.write(FIREWORK)
+            output.close()
+                #print  fullFcstDict[k]['fcstLine']
+                #print fullFcstDict[k]['sta_id'], fullObsDict[k]
 
 
 
-Fireworks().main()
+
+Fireworks().main

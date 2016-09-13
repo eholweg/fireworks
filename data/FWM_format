@@ -25,3 +25,26 @@ hm	Minimum relative humidity from 1300 today to 1300 tomorrow
 p1	Precipitation duration (1300-0600 period) in whole hours
 p2	Precipitation duration (0600-1300 period) in whole hours
 F	Wet Flag (Y for yes and N for no) Y is used for widespread rain
+
+
+
+
+
+
+
+
+Stations not in a Zone:
+TUSQUI 315602 160830 13 F 1  88  65  47 2 2  90  3  0  88  64  97  43   1   0
+BISO-N 400902 160830 13 F 1  87  67  52 2 1  68  3  0  87  67  97  50   1   0
+CHUCK  403101 160830 13 F 1  87  66  50 2 1  90  2  0  87  68  90  45   1   0
+HAMBLE 403301 160830 13 F 1  89  64  45 2 1  90  2  0  90  69  87  41   1   0
+NOLICH 403602 160830 13 F 1  86  62  46 2 3  90  2  0  86  64  93  43   1   0
+WATUAG 403604 160830 13 F 1  83  61  49 2 3  90  2  0  85  65  93  43   1   0
+LENOIR 405101 160830 13 F 1  89  66  47 2 1  68  2  0  91  69  93  39   0   0
+BLEDSO 407102 160830 13 F 1  87  63  45 2 1  68  2  0  88  67  87  43   1   0
+MEIGS  407301 160830 13 F 1  90  65  45 2 1  68  3  0  91  68  97  41   0   0
+TELLIC 407502 160830 13 F 1  86  65  50 2 2  23  3  0  87  64  93  46   1   0
+INDIAN 407603 160830 13 F 1  85  64  50 2 2  45  3  0  86  65  87  42   1   0
+PRENTI 409201 160830 13 F 1  87  64  48 2 1  90  4  0  87  70  81  43   1   0
+OCOEE  409502 160830 13 F 1  88  65  48 2 1  45  3  0  89  68  90  45   0   0
+FLATWO 448502 160830 13 F 1  83  61  49 3 3 135  2  0  85  66  93  49   1   0
